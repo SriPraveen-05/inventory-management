@@ -27,32 +27,37 @@ const Contacts = () => {
   }, []);
 
   const columns = [
-    { field: "DATE", headerName: "Date", flex: 0.5 },
+    // { field: "DATE", headerName: "Date", flex: 0.5 },
     { field: "product_name", headerName: "Product Name" },
     {
-      field: "manf_name",
-      headerName: "Manufacture Name",
+      field: "Manf_name",
+      headerName: "Manf_Name",
       flex: 1,
       cellClassName: "name-column--cell",
     },
     {
-      field: "type",
-      headerName: "Type",
+      field: "price",
+      headerName: "price",
       flex: 1,
     },
     {
-      field: "quantity",
+      field: "type",
+      headerName: "type",
+      flex: 1,
+    },
+    {
+      field: "Quantity",
       headerName: "Quantity",
       flex: 1,
     },
+    // {
+    //   field: "shelf",
+    //   headerName: "SRN",
+    //   flex: 1,
+    // },
     {
-      field: "shelf",
-      headerName: "Shelf",
-      flex: 1,
-    },
-    {
-      field: "rack",
-      headerName: "Rack",
+      field: "product_id",
+      headerName: "product_id",
       flex: 1,
     },
   ];
