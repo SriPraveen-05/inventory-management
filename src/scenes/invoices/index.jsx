@@ -1,55 +1,41 @@
+import React, { useEffect, useState } from "react";
 import { Box, Typography, useTheme } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
-import { mockDataInvoices } from "../../data/mockData";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "./firebase"; // Import your Firebase configuration
 import Header from "../../components/Header";
 
 const Invoices = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const [invoices, setInvoices] = useState([]);
+
+  useEffect(() => {
+    // Function to fetch data from Firestore
+    const fetchInvoices = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "inventory")); // Replace "invoices" with your collection name
+        const invoicesData = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setInvoices(invoicesData);
+      } catch (error) {
+        console.error("Error fetching invoices: ", error);
+      }
+    };
+
+    fetchInvoices();
+  }, []);
+
   const columns = [
-    { field: "productName", headerName: "Product Name", flex: 1 },
-    {
-      field: "name",
-      headerName: "Manufacture Name",
-      flex: 1,
-      cellClassName: "name-column--cell",
-    },
-    {
-      field: "phone",
-      headerName: "Type",
-      flex: 1,
-    },
-    {
-      field: "email",
-      headerName: "Description",
-      flex: 1,
-    },
-    {
-      field: "unitPrice",
-      headerName: "Selling Price",
-      flex: 1,
-      renderCell: (params) => (
-        <Typography color={colors.greenAccent[500]}>
-          ${params.row.unitPrice}
-        </Typography>
-      ),
-    },
-    {
-      field: "cost",
-      headerName: "Unit Price ",
-      flex: 1,
-      renderCell: (params) => (
-        <Typography color={colors.greenAccent[500]}>
-          ${params.row.cost}
-        </Typography>
-      ),
-    },
-    {
-      field: "date",
-      headerName: "Date",
-      flex: 1,
-    },
+    { field: "product_name", headerName: "Product_name", flex: 1 },
+    { field: "Manf_name", headerName: "Manf_name", flex: 1 },
+    { field: "Product_id", headerName: "Product_id", flex: 1 },
+    { field: "type", headerName: "type", flex: 1 },
+    { field: "Quantity", headerName: "Quantity", flex: 1 },
+    { field: "sell_price", headerName: "Sell_Price", flex: 1 },
   ];
 
   return (
@@ -84,7 +70,7 @@ const Invoices = () => {
           },
         }}
       >
-        <DataGrid rows={mockDataInvoices} columns={columns} />
+        <DataGrid rows={invoices} columns={columns}  />
       </Box>
     </Box>
   );
