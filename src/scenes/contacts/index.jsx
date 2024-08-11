@@ -60,6 +60,7 @@ const Contacts = () => {
       headerName: "product_id",
       flex: 1,
     },
+    {field:"time",headerName:"time",flex:1}
   ];
 
   return (

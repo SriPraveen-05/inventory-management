@@ -132,13 +132,13 @@ const Sidebar = () => {
             >
               Data
             </Typography>
-            {  <Item
+            {/* {  <Item
               title="Manage Team"
               to="/team"
               icon={<PeopleOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
-            /> } 
+            /> }  */}
             <Item
               title="Warehouse"
               to="/contacts"
@@ -168,13 +168,13 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
-            <Item
+            {/* <Item
               title="Calendar"
               to="/calendar"
               icon={<CalendarTodayOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
-            />
+            /> */}
              {/* <Item
               title="FAQ Page"
               to="/faq"

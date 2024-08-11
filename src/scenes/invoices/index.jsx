@@ -36,6 +36,7 @@ const Invoices = () => {
     { field: "type", headerName: "type", flex: 1 },
     { field: "Quantity", headerName: "Quantity", flex: 1 },
     { field: "sell_price", headerName: "Sell_Price", flex: 1 },
+    
   ];
 
   return (
